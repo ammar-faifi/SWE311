@@ -16,4 +16,8 @@ public class SimpleController {
 		return new EchoType(counter.incrementAndGet(), String.format(template, value));
 	}
 
+	@GetMapping("/")
+	public String test() {
+		return "TEST";
+	}
 }

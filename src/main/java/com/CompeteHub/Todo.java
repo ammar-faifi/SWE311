@@ -1,3 +1,5 @@
+package com.CompeteHub;
+
 import org.springframework.data.annotation.Id;
 
 public class Todo {

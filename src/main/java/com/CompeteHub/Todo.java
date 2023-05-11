@@ -1,22 +1,23 @@
 package com.CompeteHub;
 
-import org.springframework.data.annotation.Id;
+// import org.springframework.data.annotation.Id;
 
 public class Todo {
 
-  public Todo() {}
-
-  public Todo(String description, String details, boolean done) {
-    this.description = description;
-    this.details = details;
-    this.done = done;
+  public Todo() {
   }
 
-  @Id private Long id;
+  // public Todo(String description, String details, boolean done) {
+  // this.description = description;
+  // this.details = details;
+  // this.done = done;
+  // }
 
-  private String description;
+  // @Id private Long id;
 
-  private String details;
+  // private String description;
 
-  private boolean done;
+  // private String details;
+
+  // private boolean done;
 }

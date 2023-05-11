@@ -21,8 +21,10 @@ public class SimpleController {
   }
 
   @RequestMapping("/")
-  public String test() {
-    return "index";
+  public ModelAndView test() {
+    ModelAndView view = new ModelAndView();
+    view.setViewName("index.html");
+    return view;
   }
 
   @GetMapping("/randRR")

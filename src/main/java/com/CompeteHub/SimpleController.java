@@ -23,7 +23,7 @@ public class SimpleController {
 		return "TEST";
 	}
 
-	@GetMapping("/rand_RR")
+	@GetMapping("/randRR")
 	@ResponseBody
 	public List<List<String>> generateRoundRobin(@RequestParam(value = "num", defaultValue = "4") int num) {
 		System.out.println(num);

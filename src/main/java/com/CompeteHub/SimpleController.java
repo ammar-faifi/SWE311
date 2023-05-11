@@ -3,9 +3,11 @@ package com.CompeteHub;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 public class SimpleController {
@@ -18,9 +20,11 @@ public class SimpleController {
         String.format(template, value));
   }
 
-  @GetMapping("/")
-  public String test() {
-    return "index";
+  @RequestMapping("/")
+  public ModelAndView test() {
+    ModelAndView view = new ModelAndView();
+    view.setViewName("index.html");
+    return view;
   }
 
   @GetMapping("/randRR")

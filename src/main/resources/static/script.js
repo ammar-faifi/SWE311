@@ -40,7 +40,7 @@ function sendCreateTour() {
   };
 
   $.ajax({
-    url: "http://localhost:8080/createTour",
+    url: "/createTour",
     type: "post",
     contentType: "application/json",
     data: JSON.stringify(data),

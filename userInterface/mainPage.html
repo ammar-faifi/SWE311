@@ -21,22 +21,7 @@
   <header>
     <h1>competeHub</h1>
   </header><br>
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <div class="container-fluid">
-      <!-- Links -->
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Table of matches</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Standings</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Participants</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  
   <div class="container">
     <div class="row">
       <div class="col">
@@ -46,7 +31,8 @@
           "form-control">
         </form><br>
         <label for="sel1" class="form-label">Select participation
-        type (Teams/Individuals):</label> <select class=
+        type (Teams/Individuals):</label> 
+        <select class=
         "form-select" id="sel1" name="sellist1">
           <option value="teams">
             Teams
@@ -55,6 +41,11 @@
             Individuals
           </option>
         </select><br>
+
+        <textarea class="form-control" rows="5" id="participants"
+        name="text" placeholder=
+        "Place participant/teams names,one per line"></textarea><br>
+
         <label for="sel1" class="form-label">Select Type of
         tournament (Round-Robin/Elimination):</label>
         <select class="form-select" id="sel11" name="sellist1">
@@ -87,9 +78,6 @@
         <input id="addGame" type="text" class="form-control"
         placeholder="Enter the name of the sport/game" style=
         "display: none;"><br>
-        <textarea class="form-control" rows="5" id="participants"
-        name="text" placeholder=
-        "Place participant names,one per line"></textarea><br>
         <label for="date">Select the 'start' date</label>
         <input type="date" id="date"><br>
         <br>
@@ -98,8 +86,10 @@
         <br>
         <input type="text" class="form-control" placeholder=
         "Number of days between each stage"><br>
-        <button type="button" class=
-        "btn btn-primary btn-block">Create</button>
+        <div class="d-grid gap-3">
+          <button type="button" class=
+          "btn btn-primary btn-block">Create</button>
+        </div>
       </div>
     </div>
     <div>

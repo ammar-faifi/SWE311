@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -47,4 +50,26 @@ public class ApiController {
             return null;
         }
     }
+
+    @Autowired
+    TourRepo tourRepository;
+
+    @PostMapping("/addTour")
+    public ResponseEntity<?> registerUser(@RequestBody TournamentModel tournamentModel) {
+        // get the data passed by user/passed to postman
+        Tour tour = new Tour(
+                tournamentModel.getName(),
+                tournamentModel.getType(),
+                tournamentModel.getParticipationType(),
+                tournamentModel.getSport(),
+                tournamentModel.getStartDate(),
+                tournamentModel.getEndDate(),
+                tournamentModel.getTeams(),
+                tournamentModel.getNumOfTeams());
+        // save data passed by tour
+        Tour tourSaved = tourRepository.save(tour);
+        // return the saved data and an Okay.
+        return new ResponseEntity(tourSaved, HttpStatus.OK);
+    }
+
 }

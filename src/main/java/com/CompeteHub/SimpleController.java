@@ -9,4 +9,19 @@ public class SimpleController {
     public String test() {
         return "index";
     }
+
+    @RequestMapping("/login")
+    public String login() {
+        return "loginPage";
+    }
+
+    @RequestMapping("/admin")
+    public String admin() {
+        return "tournaments";
+    }
+
+    @RequestMapping("/student")
+    public String student() {
+        return "firstPage";
+    }
 }

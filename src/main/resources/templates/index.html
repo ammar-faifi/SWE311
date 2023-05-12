@@ -37,7 +37,7 @@
         </div>
     </nav>
     <div class="container">
-        <div class="row">
+        <div class="row" id="form-container">
             <div class="col">
                 <form action="/action_page.php">
                     <label for="tournamentName">Tournament
@@ -93,6 +93,11 @@
                 "participants" name="text" placeholder=
                 "Place participant names,one per line"></textarea><br>
 
+                <label for="number-of-teams">Or number of
+                teams</label> <input type="text" name=
+                "number-of-teams" id="number-of-teams" value=""
+                placeholder="Enter an integer of teams"><br>
+                <br>
                 <label for="date">Select the 'start' date</label>
                 <input type="date" id="date"><br>
                 <br>

@@ -1,8 +1,6 @@
 
-$.get("https://competehub.azurewebsites.net/randRR", (data, status) => {
-  console.log(data, status);
 
-
+function showTable(data) {
   // Transpose matrix
   output = data[0].map((_, colIndex) => data.map(row => row[colIndex]));
   let div = document.getElementById('round-robin-div');
@@ -24,4 +22,69 @@ $.get("https://competehub.azurewebsites.net/randRR", (data, status) => {
   }
   //append the compiled table to the DOM
   div.appendChild(table);
+
+}
+
+
+function sendCreateTour() {
+  const data = {
+    name: $("#tournamentName").val(),
+    type: $("#sel11").val(),
+    participationType: $("#sel1").val(),
+    sport: $("#game").val(),
+    startDate: $("#date").val(),
+    endDate: $("#date2").val(),
+    teams: $("#participants").val(),
+    numOfTeams: $("#number-of-teams").val(),
+  };
+
+  $.ajax({
+    url: "http://localhost:8080/createTour",
+    type: "post",
+    contentType: "application/json",
+    data: JSON.stringify(data),
+    success: (result) => {
+      console.log(result);
+      $("#form-container").hide();
+      showTable(result);
+    }
+  });
+}
+
+$(document).ready(() => {
+  $("#create-btn").click(sendCreateTour);
+});
+
+
+
+// for login page
+//
+
+function sendLogin() {
+  const username = $("#username").val();
+  const password = $("#password").val();
+
+  $.ajax({
+    url: "https://us-central1-swe206-221.cloudfunctions.net/app/UserSignIn",
+    type: 'get',
+    data: {
+      username: username,
+      password: password,
+    },
+    success: (result) => {
+      console.log(result);
+      localStorage.setItem("usertype", result.type);
+      localStorage.setItem("username", username);
+      if (result.type == "admin") {
+        window.location.href = "/admin";
+      }
+      else {
+        window.location.href = "/student";
+      }
+    },
+  });
+}
+
+$(document).ready(() => {
+  $("#login-btn").click(sendLogin);
 });

@@ -22,13 +22,15 @@ public class Tour {
     private String startDate;
     private String endDate;
     private String teams;
+    private String supervisor;
 
     public Tour() {
     }
 
     public Tour(
             String name, String type, String participationType, String sport,
-            String startDate, String endDate, String teams, int numOfTeams) {
+            String startDate, String endDate, String teams, int numOfTeams,
+            String supervisor) {
         this.name = name;
         this.type = type;
         this.participationType = participationType;
@@ -37,6 +39,7 @@ public class Tour {
         this.endDate = endDate;
         this.teams = teams;
         this.numOfTeams = numOfTeams;
+        this.supervisor = supervisor;
     }
 
 }

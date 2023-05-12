@@ -35,16 +35,31 @@ public class ApiController {
     @PostMapping("/createTour")
     public List<List<String>> createTour(@RequestBody TournamentModel body) {
         System.out.println(">>>>>>> Creating Tour.");
-
+        List<List<String>> roundTable;
         try {
             if (body.getTeams() == "") {
                 // Assuming numOfTeams not null
-                return RoundRobin.generate(body.getNumOfTeams(), null);
+                roundTable = RoundRobin.generate(body.getNumOfTeams(), null);
             } else {
                 // Assume it has correct length, type, and format
                 List<String> teams = Arrays.asList(body.getTeams().split(","));
-                return RoundRobin.generate(teams.size(), teams);
+                roundTable = RoundRobin.generate(teams.size(), teams);
             }
+
+            Tour tour = new Tour(
+                    body.getName(),
+                    body.getType(),
+                    body.getParticipationType(),
+                    body.getSport(),
+                    body.getStartDate(),
+                    body.getEndDate(),
+                    body.getTeams(),
+                    body.getNumOfTeams(),
+                    body.getSupervisor());
+            // save data passed by tour
+            Tour tourSaved = tourRepository.save(tour);
+            return roundTable;
+
         } catch (Throwable e) {
             System.out.println("Error " + e.getMessage());
             return null;
@@ -65,7 +80,8 @@ public class ApiController {
                 tournamentModel.getStartDate(),
                 tournamentModel.getEndDate(),
                 tournamentModel.getTeams(),
-                tournamentModel.getNumOfTeams());
+                tournamentModel.getNumOfTeams(),
+                tournamentModel.getSupervisor());
         // save data passed by tour
         Tour tourSaved = tourRepository.save(tour);
         // return the saved data and an Okay.

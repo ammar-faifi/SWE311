@@ -36,6 +36,7 @@ function sendCreateTour() {
     endDate: $("#date2").val(),
     teams: $("#participants").val(),
     numOfTeams: $("#number-of-teams").val(),
+    supervisor: localStorage.getItem('username'),
   };
 
   $.ajax({

@@ -23,13 +23,16 @@ public class TournamentModel {
     private String endDate;
     @JsonProperty("teams")
     private String teams;
+    @JsonProperty("supervisor")
+    private String supervisor;
 
     public TournamentModel() {
     }
 
     public TournamentModel(
             String name, String type, String participationType, String sport,
-            String startDate, String endDate, String teams, int numOfTeams) {
+            String startDate, String endDate, String teams, int numOfTeams,
+            String supervisor) {
         this.name = name;
         this.type = type;
         this.participationType = participationType;
@@ -38,6 +41,7 @@ public class TournamentModel {
         this.endDate = endDate;
         this.teams = teams;
         this.numOfTeams = numOfTeams;
+        this.supervisor = supervisor;
     }
 
 }

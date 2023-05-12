@@ -5,9 +5,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.context.annotation.Bean;
-// import org.springframework.context.ApplicationListener;
-// import org.springframework.boot.context.event.ApplicationReadyEvent;
-// import java.util.stream.Stream;
+
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.ApplicationListener;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @SpringBootApplication
 public class CompeteHubApplication {
@@ -26,19 +30,16 @@ public class CompeteHubApplication {
 		};
 	}
 
-	// @Bean
-	// ApplicationListener<ApplicationReadyEvent>
-	// basicsApplicationListener(TodoRepository repository) {
-	// return event -> repository
-	// .saveAll(Stream.of("A", "B", "C")
-	// .map(name -> new Todo("configuration", "congratulations, you have set up
-	// correctly!", true))
-	// .toList())
-	// .forEach(System.out::println);
-	// }
-
+	@Bean
+	ApplicationListener<ApplicationReadyEvent> basicsApplicationListener(TodoRepository repository) {
+		return event -> repository
+				.saveAll(Stream.of("A", "B", "C")
+						.map(name -> new Todo("configuration", "congratulations, you have set up correctly!", true))
+						.collect(Collectors.toList()))
+				.forEach(System.out::println);
+	}
 }
 
-// interface TodoRepository extends CrudRepository<Todo, Long> {
+interface TodoRepository extends JpaRepository<Todo, Long> {
 
-// }
+}

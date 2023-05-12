@@ -32,6 +32,9 @@ public class ApiController {
         return RoundRobin.generate(num, null);
     }
 
+    @Autowired
+    TourRepo tourRepository;
+
     @PostMapping("/createTour")
     public List<List<String>> createTour(@RequestBody TournamentModel body) {
         System.out.println(">>>>>>> Creating Tour.");
@@ -65,9 +68,6 @@ public class ApiController {
             return null;
         }
     }
-
-    @Autowired
-    TourRepo tourRepository;
 
     @PostMapping("/addTour")
     public ResponseEntity<?> registerUser(@RequestBody TournamentModel tournamentModel) {

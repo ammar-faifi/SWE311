@@ -25,3 +25,31 @@ $.get("https://competehub.azurewebsites.net/randRR", (data, status) => {
   //append the compiled table to the DOM
   div.appendChild(table);
 });
+
+
+function sendCreateTour() {
+  const data = {
+    name: $("#tournamentName").val(),
+    type: $("#sel11").val(),
+    participationType: $("#sel1").val(),
+    sport: $("#game").val(),
+    startDate: $("#date").val(),
+    endDate: $("#date2").val(),
+    teams: $("#participants").val(),
+    numOfTeams: $("#number-of-teams").val(),
+  };
+
+  $.ajax({
+    url: "http://localhost:8080/createTour",
+    type: "post",
+    contentType: "application/json",
+    data: JSON.stringify(data),
+    success: (result, status) => {
+      console.log(status, result);
+    }
+  });
+}
+
+$(document).ready(() => {
+  $("#create-btn").click(sendCreateTour);
+});

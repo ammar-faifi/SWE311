@@ -1,5 +1,7 @@
 package com.CompeteHub;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -23,13 +25,25 @@ public class ApiController {
     @GetMapping("/randRR")
     public List<List<String>> generateRoundRobin(@RequestParam(value = "num", defaultValue = "4") int num) {
         System.out.println(num);
-        return RoundRobin.generate(num);
+        return RoundRobin.generate(num, null);
     }
 
     @PostMapping("/createTour")
-    public TournamentModel createTour(@RequestBody TournamentModel body) {
-        System.out.println(body);
+    public String createTour(@RequestBody TournamentModel body) {
+        System.out.println(">>>>>>> Creating Tour.");
 
-        return body;
+        try {
+            if (body.getTeams() == "") {
+                // Assuming numOfTeams not null
+                return RoundRobin.generate(body.getNumOfTeams(), null).toString();
+            } else {
+                // Assume it has correct length, type, and format
+                List<String> teams = Arrays.asList(body.getTeams().split(","));
+                return RoundRobin.generate(teams.size(), teams).toString();
+            }
+        } catch (Throwable e) {
+            System.out.println("Error " + e.getMessage());
+            return null;
+        }
     }
 }

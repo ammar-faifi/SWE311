@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -29,17 +30,17 @@ public class ApiController {
     }
 
     @PostMapping("/createTour")
-    public String createTour(@RequestBody TournamentModel body) {
+    public List<List<String>> createTour(@RequestBody TournamentModel body) {
         System.out.println(">>>>>>> Creating Tour.");
 
         try {
             if (body.getTeams() == "") {
                 // Assuming numOfTeams not null
-                return RoundRobin.generate(body.getNumOfTeams(), null).toString();
+                return RoundRobin.generate(body.getNumOfTeams(), null);
             } else {
                 // Assume it has correct length, type, and format
                 List<String> teams = Arrays.asList(body.getTeams().split(","));
-                return RoundRobin.generate(teams.size(), teams).toString();
+                return RoundRobin.generate(teams.size(), teams);
             }
         } catch (Throwable e) {
             System.out.println("Error " + e.getMessage());

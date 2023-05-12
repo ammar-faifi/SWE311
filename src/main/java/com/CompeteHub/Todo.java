@@ -1,11 +1,8 @@
 package com.CompeteHub;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import org.springframework.data.persistence.Entity;
-
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,23 +11,19 @@ import lombok.Setter;
 @Entity
 public class Todo {
 
-    public Todo() {
-    }
+  public Todo() {}
 
-    public Todo(String description, String details, boolean done) {
-        this.description = description;
-        this.details = details;
-        this.done = done;
-    }
+  public Todo(String description, String details, boolean done) {
+    this.description = description;
+    this.details = details;
+    this.done = done;
+  }
 
-    @Id
-    @GeneratedValue
-    private Long id;
+  @Id @GeneratedValue private Long id;
 
-    private String description;
+  private String description;
 
-    private String details;
+  private String details;
 
-    private boolean done;
-
+  private boolean done;
 }

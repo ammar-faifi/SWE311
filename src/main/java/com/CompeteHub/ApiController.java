@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,5 +24,12 @@ public class ApiController {
     public List<List<String>> generateRoundRobin(@RequestParam(value = "num", defaultValue = "4") int num) {
         System.out.println(num);
         return RoundRobin.generate(num);
+    }
+
+    @PostMapping("/createTour")
+    public TournamentModel createTour(@RequestBody TournamentModel body) {
+        System.out.println(body);
+
+        return body;
     }
 }

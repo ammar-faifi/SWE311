@@ -88,6 +88,7 @@ function sendCreateTour() {
     supervisor: localStorage.getItem('username'),
   };
 
+
   $.ajax({
     url: "/createTour",
     type: "post",

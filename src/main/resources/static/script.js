@@ -25,6 +25,55 @@ function showTable(data) {
 
 }
 
+function registerTour(btn) {
+  const tourId = btn.id.split("-")[1];
+
+  $.ajax({
+    url: `/registerTour?tourId=${tourId}&name=${localStorage.getItem('username')}`,
+    success: (result) => {
+      console.log(result);
+      btn.className = 'btn btn-secondary';
+      btn.textContent = 'Registered';
+      btn.disabled = true;
+    }
+  });
+
+}
+
+function populateUpcomingTable(data) {
+  let table = document.getElementById("upcoming-table");
+
+  for (let tour of data) {
+    let row = table.insertRow();
+
+    var cell = row.insertCell();
+    cell.textContent = tour.name;
+
+    cell = row.insertCell();
+    const btn = document.createElement('button');
+    btn.textContent = 'Register';
+    btn.className = 'btn btn-primary';
+    btn.id = `btn-${tour.id}`;
+    btn.setAttribute('onClick', `registerTour(this)`);
+    cell.append(btn);
+  }
+}
+
+$(document).ready(() => {
+  let table = $("#upcoming-table");
+
+  if (table) {
+    $.ajax({
+      url: '/getAllTour',
+      type: 'get',
+      success: (result) => {
+        populateUpcomingTable(result);
+      }
+    });
+  }
+
+});
+
 
 function sendCreateTour() {
   const data = {

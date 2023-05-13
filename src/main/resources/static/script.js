@@ -5,6 +5,7 @@ function showTable(data) {
   output = data[0].map((_, colIndex) => data.map(row => row[colIndex]));
   let div = document.getElementById('round-robin-div');
 
+
   let table = document.createElement('table');
   table.className = "table table-bordered";
   //iterate over every array(row) within tableArr
@@ -23,6 +24,20 @@ function showTable(data) {
   //append the compiled table to the DOM
   div.appendChild(table);
 
+}
+
+function requestAndShowTable() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const tourId = urlParams.get('tourId');
+
+  $.ajax({
+    url: `/getRoundTable?tourId=${tourId}`,
+    type: 'get',
+    success: (result) => {
+      console.log(result);
+      showTable(result);
+    }
+  });
 }
 
 function registerTour(btn) {
@@ -60,7 +75,7 @@ function populateUpcomingTable(data) {
 }
 
 $(document).ready(() => {
-  let table = $("#upcoming-table");
+  let table = document.getElementById("upcoming-table");
 
   if (table) {
     $.ajax({

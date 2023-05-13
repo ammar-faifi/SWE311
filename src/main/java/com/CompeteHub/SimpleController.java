@@ -35,4 +35,9 @@ public class SimpleController {
         return "UpcommingTournaments";
     }
 
+    @RequestMapping("/tourDetails")
+    public String tourDetails() {
+        return "tourDetails";
+    }
+
 }

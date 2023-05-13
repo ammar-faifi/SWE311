@@ -67,7 +67,8 @@ public class Score {
         for (Map.Entry<String, Standings> entry : sortedStandings) {
             String player = entry.getKey();
             Standings playerStandings = entry.getValue();
-            // print the standings for each player based on points if draw then goals if draw then alphabetical
+            // print the standings for each player based on points if draw then goals if
+            // draw then alphabetical
             System.out.print("" + rank);
             System.out.print("\t" + player);
             System.out.print("\t" + playerStandings.gamesPlayed);
@@ -81,11 +82,12 @@ public class Score {
         }
 
     }
+
     public void printInitialStandings(int numPlayers, List<String> playerNames) {
         System.out.println("Initial Standings:");
         System.out.println("#\tP\tPL\tW\tL\tD\tG\tPTS");
         // print the initial standing for each player and their data is all 0
-        for(int i = 0; i < numPlayers; i++) {
+        for (int i = 0; i < numPlayers; i++) {
             String playerName = playerNames.get(i);
             Standings playerStandings = standings.getOrDefault(playerName, new Standings());
             standings.put(playerName, playerStandings);
@@ -94,7 +96,8 @@ public class Score {
         for (Map.Entry<String, Standings> entry : standings.entrySet()) {
             String player = entry.getKey();
             Standings playerStandings = entry.getValue();
-            // print the standings for each player based on points if draw then goals if draw then alphabetical
+            // print the standings for each player based on points if draw then goals if
+            // draw then alphabetical
             System.out.print("" + rank);
             System.out.print("\t" + player);
             System.out.print("\t" + playerStandings.gamesPlayed);

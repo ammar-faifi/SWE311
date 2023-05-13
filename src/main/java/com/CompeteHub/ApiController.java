@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
+
+import com.utils.ByteConversion;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -64,9 +67,11 @@ public class ApiController {
 
       Tour tour = new Tour(body.getName(), body.getType(), body.getParticipationType(),
           body.getSport(), body.getStartDate(), body.getEndDate(),
-          body.getTeams(), body.getNumOfTeams(), body.getSupervisor());
+          body.getTeams(), body.getNumOfTeams(), body.getSupervisor(),
+          ByteConversion.convertObjectToByteArray(roundTable));
       // save data passed by tour
       Tour tourSaved = tourRepository.save(tour);
+
       return roundTable;
 
     } catch (Throwable e) {
@@ -75,18 +80,16 @@ public class ApiController {
     }
   }
 
-  @PostMapping("/addTour")
-  public ResponseEntity<?> registerUser(@RequestBody TournamentModel tournamentModel) {
-    // get the data passed by user/passed to postman
-    Tour tour = new Tour(
-        tournamentModel.getName(), tournamentModel.getType(),
-        tournamentModel.getParticipationType(), tournamentModel.getSport(),
-        tournamentModel.getStartDate(), tournamentModel.getEndDate(),
-        tournamentModel.getTeams(), tournamentModel.getNumOfTeams(),
-        tournamentModel.getSupervisor());
-    // save data passed by tour
-    Tour tourSaved = tourRepository.save(tour);
-    // return the saved data and an Okay.
-    return new ResponseEntity(tourSaved, HttpStatus.OK);
+  @GetMapping("/getRoundTable")
+  public List<List<String>> getRoundTable(@RequestParam(value = "tourId") Long tourId) {
+    try {
+      byte[] rounds = tourRepository.findById(tourId).orElseThrow().getRounds();
+      return (List<List<String>>) ByteConversion.convertByteArrayToObject(rounds, Object.class);
+
+    } catch (Throwable e) {
+      System.out.println("Error " + e.getMessage());
+    }
+    return null;
   }
+
 }

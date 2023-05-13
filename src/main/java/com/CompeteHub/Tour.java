@@ -23,6 +23,7 @@ public class Tour {
     private String endDate;
     private String teams;
     private String supervisor;
+    private byte[] rounds;
 
     public Tour() {
     }
@@ -30,7 +31,7 @@ public class Tour {
     public Tour(
             String name, String type, String participationType, String sport,
             String startDate, String endDate, String teams, int numOfTeams,
-            String supervisor) {
+            String supervisor, byte[] rounds) {
         this.name = name;
         this.type = type;
         this.participationType = participationType;
@@ -40,6 +41,7 @@ public class Tour {
         this.teams = teams;
         this.numOfTeams = numOfTeams;
         this.supervisor = supervisor;
+        this.rounds = rounds;
     }
 
 }

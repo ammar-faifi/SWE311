@@ -14,13 +14,22 @@
   "https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <style>
             body { background-color : #ffffff; }
-            h1 { color: #000000; font-family: "Monaco", monospace;}
+            h1 { color: #ffffff; font-family: "Monaco", monospace;}
   </style>
 </head>
 <body>
-  <header>
-    <h1>competeHub</h1>
-  </header><br>
+
+  <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+    <div class="container-fluid">
+      <h1>CompeteHub</h1>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Login</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <br><br>
   
   <div class="container">
     <div class="row">
@@ -44,7 +53,7 @@
 
         <textarea class="form-control" rows="5" id="participants"
         name="text" placeholder=
-        "Place participant/teams names,one per line"></textarea><br>
+        "Place participant/teams names, separated by comma"></textarea><br>
 
         <label for="sel1" class="form-label">Select Type of
         tournament (Round-Robin/Elimination):</label>
@@ -95,6 +104,7 @@
     <div>
       <table id="round-robin-table"></table>
     </div>
+    
   </div>
   <script type="text/javascript">
   var res ;
@@ -102,8 +112,6 @@
   console.log(res);
   </script>
   <script>
-
-
           function showTextField() {
             var selectBox = document.getElementById("game");
             var selectedValue = selectBox.options[selectBox.selectedIndex].value;

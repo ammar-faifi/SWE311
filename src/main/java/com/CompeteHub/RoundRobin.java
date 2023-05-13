@@ -4,16 +4,7 @@ import java.util.*;
 
 public class RoundRobin {
 
-    public static List<List<String>> generate(int numOfPlayers, List<String> teams) {
-        // create a list of player names
-        List<String> playerNames = new ArrayList<>();
-
-        if (teams == null)
-            for (int i = 0; i < numOfPlayers; i++) {
-                playerNames.add("Team " + i);
-            }
-        else
-            playerNames = teams;
+    public static List<List<String>> generate(int numOfPlayers, List<String> playerNames) {
 
         System.out.println(playerNames);
         List<List<String>> rounds = new ArrayList<>(); // create a list of rounds

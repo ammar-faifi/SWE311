@@ -40,6 +40,20 @@ function requestAndShowTable() {
   });
 }
 
+function updateScore() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const tourId = urlParams.get('tourId');
+
+  $.ajax({
+    url: `/updateScore?tourId=${tourId}&p1score=${$("#p1-score").val()}&p2score=${$("#p2-score").val()}`,
+    type: 'get',
+    success: (result) => {
+      console.log(result);
+      document.getElementById("round-robin-results-div").value = result;
+    }
+  });
+}
+
 function registerTour(btn) {
   const tourId = btn.id.split("-")[1];
 

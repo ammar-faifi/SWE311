@@ -1,3 +1,6 @@
+package com.CompeteHub;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +11,14 @@ public class Score {
 
     public Score() {
         standings = new HashMap<>();
+    }
+
+    public void setStandings(Map<String, Standings> standings) {
+        this.standings = standings;
+    }
+
+    public Map<String, Standings> getStandings() {
+        return this.standings;
     }
 
     public void updateStandings(String player1, String player2, int score1, int score2) {
@@ -39,9 +50,10 @@ public class Score {
         standings.put(player2, player2Standings);
     }
 
-    public void printStandings() {
-        System.out.println("Current Standings:");
-        System.out.println("#\tP\tPL\tW\tL\tD\tG\tPTS");
+    public String printStandings() {
+        String results;
+        results = "Current Standings:\n";
+        results += "#\tP\tPL\tW\tL\tD\tG\tPTS\n";
         List<Map.Entry<String, Standings>> sortedStandings = new ArrayList<>(standings.entrySet());
 
         sortedStandings.sort((entry1, entry2) -> {
@@ -69,17 +81,18 @@ public class Score {
             Standings playerStandings = entry.getValue();
             // print the standings for each player based on points if draw then goals if
             // draw then alphabetical
-            System.out.print("" + rank);
-            System.out.print("\t" + player);
-            System.out.print("\t" + playerStandings.gamesPlayed);
-            System.out.print("\t" + playerStandings.wins);
-            System.out.print("\t" + playerStandings.losses);
-            System.out.print("\t" + playerStandings.draws);
-            System.out.print("\t" + playerStandings.goalsFor);
-            System.out.print("\t" + playerStandings.points);
-            System.out.println();
+            results += rank;
+            results += "\t" + player;
+            results += "\t" + playerStandings.gamesPlayed;
+            results += "\t" + playerStandings.wins;
+            results += "\t" + playerStandings.losses;
+            results += "\t" + playerStandings.draws;
+            results += "\t" + playerStandings.goalsFor;
+            results += "\t" + playerStandings.points + "\n";
             rank++;
         }
+
+        return results;
 
     }
 
@@ -111,12 +124,12 @@ public class Score {
         }
     }
 
-    private static class Standings {
-        private int gamesPlayed;
-        private int wins;
-        private int losses;
-        private int draws;
-        private int goalsFor;
-        private int points;
+    public static class Standings implements Serializable {
+        public int gamesPlayed;
+        public int wins;
+        public int losses;
+        public int draws;
+        public int goalsFor;
+        public int points;
     }
 }

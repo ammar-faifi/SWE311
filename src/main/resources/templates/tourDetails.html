@@ -42,6 +42,21 @@
             <br>
             <div id="round-robin-div"></div>
         </div>
+        <div>
+            <br>
+            <label for="p1-score">Player Score:</label>
+            <input type="number" id="p1-score" class=
+            "form-control"><br>
+            <label for="p2-score">Player Score:</label>
+            <input type="number" id="p2-score" class=
+            "form-control"><br>
+            <button type="button" class="btn btn-primary btn-block"
+            id="create-btn" onclick="updateScore()">Update
+            Score</button><br>
+            <textarea class="form-control" rows="5" id=
+            "round-robin-results-div" name="text" placeholder=
+            "Place participant names,one per line"></textarea><br>
+        </div>
     </div>
     <script type="text/javascript">
     requestAndShowTable();

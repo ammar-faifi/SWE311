@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SimpleController {
     @RequestMapping("/")
     public String test() {
-        return "tournaments";
+        return "loginPage";
     }
 
     @RequestMapping("/createTour")
@@ -25,13 +25,14 @@ public class SimpleController {
         return "firstPage";
     }
 
+    @RequestMapping("/student")
+    public String student() {
+        return "tournaments";
+    }
+
     @RequestMapping("/upcommingTournaments")
     public String UpcommingTournaments() {
         return "UpcommingTournaments";
     }
 
-    @RequestMapping("/student")
-    public String student() {
-        return "tournaments";
-    }
 }

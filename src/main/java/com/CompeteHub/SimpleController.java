@@ -40,4 +40,15 @@ public class SimpleController {
         return "tourDetails";
     }
 
+    @RequestMapping("/createTeamForStudent")
+    public String createTeamForStudent() {
+        return "createTeamForStudent";
+    }
+
+    @RequestMapping("/addingMembers")
+    public String addingMembers() {
+        return "addingMembers";
+    }
+
+    
 }

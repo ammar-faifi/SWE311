@@ -62,12 +62,22 @@ public class roundRobin {
             playerNames.remove("bye"); // remove bye from list of player names
             numOfPlayers -= 1; // remove bye
         }
-        List<String> finalStandings = new Score().score(rounds, playerNames, numOfPlayers);
-        // print final standings
-        System.out.println("Final Standings:");
-        for (int i = 0; i < finalStandings.size(); i++) {
-            System.out.println((i + 1) + ": " + finalStandings.get(i));
+        // ###### this is just to try the program ######
+        Score cc = new Score();
+        cc.PrintInitialStandings(numOfPlayers, playerNames);
+        for (List<String> match : rounds) {
+            for (String fixture : match) {
+                String[] players = fixture.split(" vs. ");
+                String player1 = players[0];
+                String player2 = players[1];
+                System.out.print("Enter the score for " + player1 + " vs " + player2 + ": ");
+                int player1Score = scanner.nextInt();
+                int player2Score = scanner.nextInt();
+                cc.updateStandings(player1, player2, player1Score, player2Score);
+            }
         }
+        cc.printStandings();
+        // ###### this is just to try the program ######
 
 //        // save final standings to file in current directory
 //        new Save().save(finalStandings, tournamentName);

@@ -1,35 +1,33 @@
 package com.CompeteHub;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class TournamentModel {
-    @JsonProperty("name")
+@Entity
+public class Tour {
+    @Id
+    @GeneratedValue
+    private Long id;
+
     private String name;
-    @JsonProperty("numOfTeams")
     private int numOfTeams;
-    @JsonProperty("type")
     private String type;
-    @JsonProperty("participationType")
     private String participationType;
-    @JsonProperty("sport")
     private String sport;
-    @JsonProperty("startDate")
     private String startDate;
-    @JsonProperty("endDate")
     private String endDate;
-    @JsonProperty("teams")
     private String teams;
-    @JsonProperty("supervisor")
     private String supervisor;
 
-    public TournamentModel() {
+    public Tour() {
     }
 
-    public TournamentModel(
+    public Tour(
             String name, String type, String participationType, String sport,
             String startDate, String endDate, String teams, int numOfTeams,
             String supervisor) {

@@ -20,12 +20,6 @@ public class ApiController {
     private static final String template = "You gave %s";
     private final AtomicLong counter = new AtomicLong();
 
-    @GetMapping("/echo")
-    public EchoType echo(@RequestParam(value = "msg", defaultValue = "World") String value) {
-        return new EchoType(counter.incrementAndGet(),
-                String.format(template, value));
-    }
-
     @GetMapping("/randRR")
     public List<List<String>> generateRoundRobin(@RequestParam(value = "num", defaultValue = "4") int num) {
         System.out.println(num);
@@ -34,6 +28,11 @@ public class ApiController {
 
     @Autowired
     TourRepo tourRepository;
+
+    @GetMapping("/getAllTour")
+    public List<Tour> getAllTour(@RequestParam(value = "supervisor") String supervisor) {
+        return tourRepository.findAllBySupervisor(supervisor);
+    };
 
     @PostMapping("/createTour")
     public List<List<String>> createTour(@RequestBody TournamentModel body) {

@@ -31,15 +31,4 @@ public class CompeteHubApplication {
 			}
 		};
 	}
-
-	// @Bean
-	// ApplicationListener<ApplicationReadyEvent>
-	// basicsApplicationListener(TodoRepository repository) {
-	// return event -> repository
-	// .saveAll(Stream.of("A", "B", "C")
-	// .map(name -> new Todo("configuration", "congratulations, you have set up
-	// correctly!", true))
-	// .collect(Collectors.toList()))
-	// .forEach(System.out::println);
-	// }
 }

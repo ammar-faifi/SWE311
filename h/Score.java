@@ -106,7 +106,6 @@ public class Score {
             System.out.println();
             rank++;
         }
-
     }
 
     private static class Standings {

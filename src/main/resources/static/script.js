@@ -79,12 +79,22 @@ function populateUpcomingTable(data) {
     cell.textContent = tour.name;
 
     cell = row.insertCell();
-    const btn = document.createElement('button');
+    let btn = document.createElement('button');
     btn.textContent = 'Register';
     btn.className = 'btn btn-primary';
     btn.id = `btn-${tour.id}`;
     btn.setAttribute('onClick', `registerTour(this)`);
     cell.append(btn);
+
+    if (localStorage.getItem('usertype') === "admin") {
+      cell = row.insertCell();
+      btn = document.createElement('button');
+      btn.textContent = 'Details';
+      btn.className = 'btn btn-info';
+      btn.id = `btn-${tour.id}`;
+      btn.setAttribute('onClick', `window.location.href="/tourDetails?tourId=${tour.id}"`);
+      cell.append(btn);
+    }
   }
 }
 
